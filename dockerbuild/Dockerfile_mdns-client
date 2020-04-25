@@ -1,0 +1,4 @@
+FROM alpine:latest
+LABEL maintainer="Hongjun Du"
+COPY ./bin/mdns-client /bin/mdns-client
+CMD [ "/bin/mdns-client" ]

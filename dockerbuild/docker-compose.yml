@@ -1,0 +1,12 @@
+version: '3'
+services:
+  mdns-server:
+    image: "mdns-server:latest"
+    container_name: "mdns-server"
+    restart: always
+  mdns-client:
+    image: "mdns-client:latest"
+    container_name: "mdns-client"
+    depends_on:
+      - mdns-server
+    restart: always
