@@ -12,13 +12,20 @@ build:
 	go fmt ./mdns-server/...
 	go fmt ./mdns-client/...
 	mkdir -p $(BIN_DIR)
-	go build -o $(BIN_DIR)/mdns-server ./mdns-server/main.go
-	go build -o $(BIN_DIR)/mdns-client ./mdns-client/main.go
+	go build -mod vendor -o $(BIN_DIR)/mdns-server ./mdns-server/main.go
+	go build -mod vendor -o $(BIN_DIR)/mdns-client ./mdns-client/main.go
+
+arm-build:
+	go fmt ./mdns-server/...
+	go fmt ./mdns-client/...
+	mkdir -p $(BIN_DIR)
+	CGO_ENABLED=0 GOOS=linux GOARCH=arm go build -mod vendor -o $(BIN_DIR)/mdns-server-arm ./mdns-server/main.go
+	CGO_ENABLED=0 GOOS=linux GOARCH=arm go build -mod vendor -o $(BIN_DIR)/mdns-client-arm ./mdns-client/main.go	
 
 dockerbuild:
 	mkdir -p $(BIN_DIR_DOCKER)
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o $(BIN_DIR_DOCKER)/mdns-server ./mdns-server/main.go
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o $(BIN_DIR_DOCKER)/mdns-client ./mdns-client/main.go
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -mod vendor -a -installsuffix cgo -o $(BIN_DIR_DOCKER)/mdns-server ./mdns-server/main.go
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -mod vendor -a -installsuffix cgo -o $(BIN_DIR_DOCKER)/mdns-client ./mdns-client/main.go
 
 dockerimages: dockerbuild
 	cd $(DOCKER_DIR) && docker build -f Dockerfile_mdns-server . -t mdns-server:latest
