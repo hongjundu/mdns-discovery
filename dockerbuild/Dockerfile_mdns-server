@@ -1,4 +1,4 @@
 FROM alpine:latest
-LABEL maintainer="Hongjun Du"
+LABEL maintainer="Hongjun Du (hongjun.du.cn@gmail.com)"
 COPY ./bin/mdns-server /bin/mdns-server
 CMD [ "/bin/mdns-server" ]

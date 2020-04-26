@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/micro/mdns"
 	"os"
@@ -14,21 +15,24 @@ func main() {
 	entriesCh := make(chan *mdns.ServiceEntry, 4)
 	go func() {
 		for entry := range entriesCh {
-			fmt.Printf("Got new entry: %v\n", entry)
+			if bytes, err := json.Marshal(entry); err != nil {
+				fmt.Printf("New Entry Discovered: %s\n", string(bytes))
+			} else {
+				fmt.Printf("New Entry Discovered: %+v\n", entry)
+			}
 		}
 	}()
 
 	go func() {
 		for {
 			// Start the lookup
-			mdns.Lookup("_foobar._tcp", entriesCh)
+			fmt.Println("\nStart Discovering....")
+			mdns.Lookup("register_device", entriesCh)
 			time.Sleep(time.Second * 3)
 		}
 
 	}()
 
-	// Wait for interrupt signal to gracefully shutdown the server with
-	// a timeout of 5 seconds.
 	quit := make(chan os.Signal)
 
 	// kill (no param) default send syscanll.SIGTERM

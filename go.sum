@@ -1,3 +1,5 @@
+github.com/hongjundu/go-rest-api-helper.v1 v1.0.1 h1:aKezqIeFUKGBkzHgeDsJAKJtL129EEtIx9FJxKmLMHc=
+github.com/hongjundu/go-rest-api-helper.v1 v1.0.1/go.mod h1:P3CMhGW8ezPt+DnJpaelTaNOiKZ+J/2G3l0vGujgY94=
 github.com/micro/mdns v0.3.0 h1:bYycYe+98AXR3s8Nq5qvt6C573uFTDPIYzJemWON0QE=
 github.com/micro/mdns v0.3.0/go.mod h1:KJ0dW7KmicXU2BV++qkLlmHYcVv7/hHnbtguSWt9Aoc=
 github.com/miekg/dns v1.1.3/go.mod h1:W1PPwlIAgtquWBMBEV9nkV9Cazfe8ScdGz/Lj7v3Nrg=

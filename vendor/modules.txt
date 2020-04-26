@@ -1,3 +1,6 @@
+# github.com/hongjundu/go-rest-api-helper.v1 v1.0.1
+## explicit
+github.com/hongjundu/go-rest-api-helper.v1
 # github.com/micro/mdns v0.3.0
 ## explicit
 github.com/micro/mdns
